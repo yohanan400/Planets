@@ -7,8 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="tb" HorizontalAlignment="Left" Height="120" Margin="407,112,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="280"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="229,187,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <TextBox x:Name="tb" HorizontalAlignment="Left" Height="120" Margin="207,55,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="538"/>
+        <Button Content="one record" HorizontalAlignment="Left" Margin="60,116,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+
+
+        <Button Content="meny records" HorizontalAlignment="Left" Margin="60,291,0,0" VerticalAlignment="Top" Width="75" Click=" Button_Click_1"/>
+        <ListView x:Name="lv" HorizontalAlignment="Left" Height="148" Margin="207,231,0,0" VerticalAlignment="Top" Width="538"/>
 
     </Grid>
 </Window>

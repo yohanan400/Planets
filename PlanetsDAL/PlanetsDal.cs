@@ -1,26 +1,23 @@
-﻿using Oracle.DataAccess.Client;
-using System;
-using System.Collections.Generic;
-
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.SqlClient;
 
 namespace PlanetsDAL
 {
     partial class PlanetsDal
     {
-        OracleConnection conn = new OracleConnection();
+            SqlConnection conn = new SqlConnection();
 
-        public void ConnectToDB()
-        {
-            conn.ConnectionString = "User Id=SYSTEM; Password=admin; Data Source=xe;";
-            conn.Open();
-        }
+            public void ConnectToDB()
+            {
+                //prepare conectio string
+                conn.ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\yakir\test.mdf;Integrated Security=True;Connect Timeout=30";
 
-        public void DisconnectFromDB()
-        {
-            conn.Close();
-        }
+                conn.Open();
+            }
+
+            public void DisconnectFromDB()
+            {
+                conn.Close();
+            }
+        
     }
 }
