@@ -34,7 +34,7 @@ namespace Planets
         {
             Planet planet = new Planet();
             PlanetsDAL.PlanetsDal dalReference = new PlanetsDAL.PlanetsDal();
-            planet = dalReference.GetPlanetByName("Hello2");
+            planet = dalReference.GetPlanetByName("Hello");
             tb.Text = planet.ToString();
         }
 
@@ -46,7 +46,26 @@ namespace Planets
             List<Planet> planets = dalReference.GetAllPlanets();
             lv.ItemsSource = planets;
 
+           // dalReference.AddPlanet(new Planet { Id = 0, Name = "Hello" });
+        }
 
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Planet planet = new Planet();
+            PlanetsDAL.PlanetsDal dalReference = new PlanetsDAL.PlanetsDal();
+            planet = dalReference.GetPlanetByName(updateTB.Text);
+
+            planet.Mass = 5555;
+
+            dalReference.UpdatePlanetByName(planet.Name, planet);
+            lv.Items.Refresh();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            PlanetsDAL.PlanetsDal dalReference = new PlanetsDAL.PlanetsDal();
+            dalReference.DeletePlanetByName(deleteTB.Text);
+            lv.Items.Refresh();
         }
     }
 }

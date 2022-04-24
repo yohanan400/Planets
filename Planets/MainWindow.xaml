@@ -7,12 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="tb" HorizontalAlignment="Left" Height="120" Margin="207,55,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="538"/>
-        <Button Content="one record" HorizontalAlignment="Left" Margin="60,116,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <TextBox x:Name="tb" HorizontalAlignment="Left" Height="120" Margin="226,15,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="538"/>
+        <Button Content="one record" HorizontalAlignment="Left" Margin="95,54,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
 
 
-        <Button Content="meny records" HorizontalAlignment="Left" Margin="60,291,0,0" VerticalAlignment="Top" Width="75" Click=" Button_Click_1"/>
-        <ListView x:Name="lv" HorizontalAlignment="Left" Height="148" Margin="207,231,0,0" VerticalAlignment="Top" Width="538"/>
+        <Button Content="meny records" HorizontalAlignment="Left" Margin="95,225,0,0" VerticalAlignment="Top" Width="75" Click=" Button_Click_1"/>
+        <ListView x:Name="lv" HorizontalAlignment="Left" Height="148" Margin="226,162,0,0" VerticalAlignment="Top" Width="538"/>
+        <Button Content="update record" HorizontalAlignment="Left" Margin="216,331,0,0" VerticalAlignment="Top" Width="110" Click="Button_Click_2"/>
+        <TextBox x:Name="updateTB" HorizontalAlignment="Left" Height="23" Margin="367,331,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button Content="delete record" HorizontalAlignment="Left" Margin="217,377,0,0" VerticalAlignment="Top" Width="109" Click="Button_Click_3"/>
+        <TextBox x:Name="deleteTB" HorizontalAlignment="Left" Height="23" Margin="367,373,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>
