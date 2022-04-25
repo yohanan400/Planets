@@ -11,13 +11,13 @@ namespace PlanetsBE
         public int Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
-        public float Mass { get; set; }
-        public float TrackRadius { get; set; }
-        public float DurationOfRoute { get; set; }
-        public float TrackInclination { get; set; }
-        public float Diameter { get; set; }
-        public float Eccentricity { get; set; }
-        public float DayLength { get; set; }
+        public double Mass { get; set; }
+        public double TrackRadius { get; set; }
+        public double DurationOfRoute { get; set; }
+        public double TrackInclination { get; set; }
+        public double Diameter { get; set; }
+        public double Eccentricity { get; set; }
+        public double DayLength { get; set; }
         public int Moons { get; set; }
         public int PlanetaryRings { get; set; }
         public int Atmospheres { get; set; }

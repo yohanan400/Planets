@@ -36,6 +36,9 @@ namespace Planets
             PlanetsDAL.PlanetsDal dalReference = new PlanetsDAL.PlanetsDal();
             planet = dalReference.GetPlanetByName("Hello");
             tb.Text = planet.ToString();
+
+           // dalReference.AddPlanet(new Planet { Id = 10, Name = "Hello2" });
+            //tb.Text = "Done";
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -57,7 +60,7 @@ namespace Planets
 
             planet.Mass = 5555;
 
-            dalReference.UpdatePlanetByName(planet.Name, planet);
+            dalReference.UpdatePlanetByName(planet);
             lv.Items.Refresh();
         }
 

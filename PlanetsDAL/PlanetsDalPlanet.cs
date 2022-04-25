@@ -2,142 +2,126 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using PlanetsBE;
 
 namespace PlanetsDAL
 {
     public partial class PlanetsDal
     {
-        public void AddPlanet(Planet planet)
+        public void AddPlanet(PlanetsBE.Planet planet)
         {
-            string query = "insert planet values(" +
-                planet.Id + ", '" +
-                planet.Name + "', '" +
-                planet.Type + "', " +
-                planet.Mass + ", " +
-                planet.TrackRadius + ", " +
-                planet.DurationOfRoute + ", " +
-                planet.TrackInclination + ", " +
-                planet.Diameter + ", " +
-                planet.Eccentricity + ", " +
-                planet.DayLength + ", " +
-                planet.Moons + ", " +
-                planet.PlanetaryRings + ", " +
-                planet.Atmospheres + ", " +
-                planet.ProfilePicture + ")";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.CommandType = CommandType.Text;
-
-            ConnectToDB();
-            cmd.ExecuteNonQuery();
-            DisconnectFromDB();
-        }
-
-        public Planet GetPlanetByName(string name)
-        {
-            string query = $"select * from Planet where name='{name}'";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.CommandType = CommandType.Text;
-
-            ConnectToDB();
-            SqlDataReader SqlDataReader = cmd.ExecuteReader();
-            SqlDataReader.Read();
-            
-            object[] arr = new object[14];
-            SqlDataReader.GetValues(arr);
-            DisconnectFromDB();
-
-            Planet planet = new Planet();
-
-            object[] planetsProps = planet.GetType().GetProperties();
-
-            int i = 0;
-            foreach (var item in planet.GetType().GetProperties())
+            using (PlanetsEntities context = new PlanetsEntities())
             {
-
-                item.SetValue(planet, Convert.ChangeType(Convert.ChangeType(arr[i], arr[i].GetType()), item.PropertyType));
-                ++i;
+                context.Planets.Add(PlanetsClone(planet));
+                context.SaveChanges();
             }
-
-            return planet;
         }
 
-        public List<Planet> GetAllPlanets()
+        public PlanetsBE.Planet GetPlanetByName(string name)
         {
-            ConnectToDB();
-
-            string query = $"select * from Planet";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.CommandType = CommandType.Text;
-
-            SqlDataReader SqlDataReader = cmd.ExecuteReader();
-
-            object[] arr = new object[14];
-
-            List<Planet> planets = new List<Planet>();
-
-
-
-            while (SqlDataReader.Read())
+            using (PlanetsEntities context = new PlanetsEntities())
             {
-                SqlDataReader.GetValues(arr);
+                PlanetsBE.Planet planet = PlanetsClone(context.Planets.FirstOrDefault(x => x.Name == name));
+                return planet;
+            }
+        }
 
-                Planet planet = new Planet();
-                int i = 0;
-                foreach (var item in planet.GetType().GetProperties())
+        public List<PlanetsBE.Planet> GetAllPlanets()
+        {
+
+            using (PlanetsEntities context = new PlanetsEntities())
+            {
+                List<PlanetsBE.Planet> planets = new List<PlanetsBE.Planet>();
+                foreach (var item in context.Planets)
                 {
-
-                    item.SetValue(planet, Convert.ChangeType(Convert.ChangeType(arr[i], arr[i].GetType()), item.PropertyType));
-                    ++i;
+                    planets.Add(PlanetsClone(item));
                 }
-
-                planets.Add(planet);
+                return planets;
             }
 
-            DisconnectFromDB();
-
-            return planets;
-
-
         }
-
-        public void UpdatePlanetByName(string name,    Planet planet)
+        
+        public void UpdatePlanetByName(PlanetsBE.Planet planet)
         {
-            Planet currentPlanet = GetPlanetByName(name);
-
-            string query = "update planet set " +
-            "name ='" + planet.Name + "', " +
-            "type ='" + planet.Type + "', " +
-            "mass =" + planet.Mass + ", " +
-            "trackRadius =" + planet.TrackRadius + ", " +
-            "DurationOfRoute =" + planet.DurationOfRoute + ", " +
-            "TrackInclination =" + planet.TrackInclination + ", " +
-            "Diameter =" + planet.Diameter + ", " +
-            "Eccentricity =" + planet.Eccentricity + ", " +
-            "DayLength =" + planet.DayLength + ", " +
-            "Moons =" + planet.Moons + ", " +
-            "PlanetaryRings =" + planet.PlanetaryRings + ", " +
-            "Atmosphere =" + planet.Atmospheres + ", " +
-            "ProfilePicture =" + planet.ProfilePicture +
-            "where id = " + planet.Id;
-
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.CommandType = CommandType.Text;
-
-            ConnectToDB();
-            cmd.ExecuteNonQuery();
-            DisconnectFromDB();
-
+            using (PlanetsEntities context = new PlanetsEntities())
+            {
+                Planet newPlanet = context.Planets.FirstOrDefault(x => x.Name == planet.Name);
+                 PlanetsClone(newPlanet, planet);
+                
+                context.SaveChanges(); 
+            }
         }
 
         public void DeletePlanetByName(string name)
         {
-            string query = $"delete from planet where name ='{name}'";
-            SqlCommand cmd = new SqlCommand(query, conn);
+            using (PlanetsEntities context = new PlanetsEntities())
+            {
+                Planet planet = context.Planets.FirstOrDefault(x => x.Name == name);
+                context.Planets.Remove(planet);
+                
+                context.SaveChanges();
+            }
+        }
 
-            ConnectToDB();
-            cmd.ExecuteNonQuery();
-            DisconnectFromDB();
+        public Planet PlanetsClone(PlanetsBE.Planet planet)
+        {
+            Planet newPlanet = new Planet();
+
+            newPlanet.Name = planet.Name;
+            newPlanet.Type = planet.Type;
+            newPlanet.mass = planet.Mass;
+            newPlanet.TrackRadius = planet.TrackRadius;
+            newPlanet.DurationOfRoute = planet.DurationOfRoute;
+            newPlanet.TrackInclination = planet.TrackInclination;
+            newPlanet.Diameter = planet.Diameter;
+            newPlanet.Eccentricity = planet.Eccentricity;
+            newPlanet.DayLength = planet.DayLength;
+            newPlanet.Moons = planet.Moons;
+            newPlanet.PlanetaryRings = planet.PlanetaryRings;
+            newPlanet.Atmosphere = planet.Atmospheres;
+            newPlanet.ProfilePicture = planet.ProfilePicture;
+
+            return newPlanet;
+        }
+
+        public PlanetsBE.Planet PlanetsClone(Planet planet)
+        {
+            PlanetsBE.Planet newPlanet = new PlanetsBE.Planet();
+
+            newPlanet.Id = planet.Id;
+            newPlanet.Name = planet.Name;
+            newPlanet.Type = planet.Type;
+            newPlanet.Mass = planet.mass;
+            newPlanet.TrackRadius = planet.TrackRadius;
+            newPlanet.DurationOfRoute = planet.DurationOfRoute;
+            newPlanet.TrackInclination = planet.TrackInclination;
+            newPlanet.Diameter = planet.Diameter;
+            newPlanet.Eccentricity = planet.Eccentricity;
+            newPlanet.DayLength = planet.DayLength;
+            newPlanet.Moons = planet.Moons;
+            newPlanet.PlanetaryRings = planet.PlanetaryRings;
+            newPlanet.Atmospheres = planet.Atmosphere;
+            newPlanet.ProfilePicture = planet.ProfilePicture;
+
+            return newPlanet;
+        }
+
+        public void PlanetsClone(Planet newPlanet, PlanetsBE.Planet planet)
+        {
+            newPlanet.Name = planet.Name;
+            newPlanet.Type = planet.Type;
+            newPlanet.mass = planet.Mass;
+            newPlanet.TrackRadius = planet.TrackRadius;
+            newPlanet.DurationOfRoute = planet.DurationOfRoute;
+            newPlanet.TrackInclination = planet.TrackInclination;
+            newPlanet.Diameter = planet.Diameter;
+            newPlanet.Eccentricity = planet.Eccentricity;
+            newPlanet.DayLength = planet.DayLength;
+            newPlanet.Moons = planet.Moons;
+            newPlanet.PlanetaryRings = planet.PlanetaryRings;
+            newPlanet.Atmosphere = planet.Atmospheres;
+            newPlanet.ProfilePicture = planet.ProfilePicture;
         }
     }
 }
