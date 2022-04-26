@@ -15,7 +15,7 @@ namespace PlanetsDAL
     public partial class Picture
     {
         public int Id { get; set; }
-        public int Planet { get; set; }
-        public string Picture1 { get; set; }
+        public int PlanetId { get; set; }
+        public string Path { get; set; }
     }
 }

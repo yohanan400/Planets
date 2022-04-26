@@ -24,9 +24,9 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Planet" Type="int" Nullable="false" />
-          <Property Name="Picture" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlanetId" Type="int" Nullable="false" />
+          <Property Name="Path" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="PictureOfTheDay">
           <Key>
@@ -87,8 +87,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Planet" Type="Int32" Nullable="false" />
-          <Property Name="Picture1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PlanetId" Type="Int32" Nullable="false" />
+          <Property Name="Path" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PictureOfTheDay">
           <Key>
@@ -151,10 +151,10 @@
           <EntitySetMapping Name="Pictures">
             <EntityTypeMapping TypeName="PlanetsModel.Picture">
               <MappingFragment StoreEntitySet="Picture">
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="PlanetId" ColumnName="PlanetId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Planet" ColumnName="Planet" />
-                <ScalarProperty Name="Picture1" ColumnName="Picture" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PictureOfTheDays">

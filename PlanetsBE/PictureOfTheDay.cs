@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PlanetsBE
 {
-    class PictureOfTheDay
+    public class PictureOfTheDay
     {
         public int Id { get; set; }
         public string Name { get; set; }

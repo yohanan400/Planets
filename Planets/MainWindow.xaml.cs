@@ -70,5 +70,12 @@ namespace Planets
             dalReference.DeletePlanetByName(deleteTB.Text);
             lv.Items.Refresh();
         }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            PlanetsDAL.PlanetsDal dalReference = new PlanetsDAL.PlanetsDal();
+            dalReference.UploadPictureToFireBase(UploadTB.Text);
+            UploadTB.Text = "Successfully uploaded";
+        }
     }
 }

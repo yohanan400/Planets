@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace PlanetsBE
 {
-    class Picture
+    public class Picture
     {
         public int Id { get; set; }
+        public string Path { get; set; }
+        public string PictureName { get; set; }
         public int PlanetId { get; set; }
-        public int PictureId { get; set; }
     }
 }
