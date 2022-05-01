@@ -15,8 +15,9 @@ namespace PlanetsDAL
     public partial class PictureOfTheDay
     {
         public int Id { get; set; }
-        public string Name { get; set; }
         public System.DateTime ReleaseDate { get; set; }
         public string URL { get; set; }
+        public string Title { get; set; }
+        public string Explanation { get; set; }
     }
 }

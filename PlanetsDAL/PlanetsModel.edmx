@@ -33,10 +33,11 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar(max)" Nullable="false" />
           <Property Name="ReleaseDate" Type="date" Nullable="false" />
-          <Property Name="URL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="URL" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Explanation" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Planet">
           <Key>
@@ -90,16 +91,17 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="PlanetId" Type="Int32" Nullable="false" />
           <Property Name="Path" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="PictureName" Type="String" Nullable="false" />
+          <Property Name="PictureName" Type="String" Unicode="false" FixedLength="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="PictureOfTheDay">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="URL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="URL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Explanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Planet">
           <Key>
@@ -163,8 +165,9 @@
           <EntitySetMapping Name="PictureOfTheDays">
             <EntityTypeMapping TypeName="PlanetsModel.PictureOfTheDay">
               <MappingFragment StoreEntitySet="PictureOfTheDay">
+                <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
                 <ScalarProperty Name="URL" ColumnName="URL" />
               </MappingFragment>

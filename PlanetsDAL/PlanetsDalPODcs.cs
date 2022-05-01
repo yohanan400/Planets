@@ -13,35 +13,36 @@ namespace PlanetsDAL
     {
         public void AddPOD()
         {
+            var url = "https://api.nasa.gov/planetary/apod?api_key=Ge2ay3CtDiciZEJ3z1BAb0rQS9GElv8LIrntvwCJ";
 
 
-            //var httpRequest = (HttpWebRequest)WebRequest.Create(url);
-
-
-            //var httpResponse = httpRequest.GetResponse();
-
-            
-            //var url = "https://images-api.nasa.gov/search?q=paris";
-
-            //using (WebClient client = new WebClient())
-            //{
-            //    Uri downloadURI = new Uri(url);
-
-            //    var stream = client.DownloadString(downloadURI);
-            //    dynamic jsonFile = JsonConvert.DeserializeObject(stream);
-                
-            //    var podUrl = jsonFile.collection.items.first.links.href;
-            //}
-
-
-
-            //TODO: CONNECT TO NASA API AND FILL PICTUREOFTHEDAY OBJECT AND UPLOAD IT TO DATABASE AND FIREBASE
-            Uri uri = new Uri("https://api.nasa.gov/planetary/apod?api_key=Ge2ay3CtDiciZEJ3z1BAb0rQS9GElv8LIrntvwCJ");
-            string firebaseUrl = UploadPODToFireBase("", "test");
-            using (PlanetsEntities context = new PlanetsEntities())
+            using (WebClient client = new WebClient())
             {
-                context.PictureOfTheDays.Add(new PictureOfTheDay { URL = firebaseUrl /*TODO: THE REST FILL WITH NASA API*/}) ;
-                context.SaveChanges();
+                //Download Json file
+                Uri downloadURI = new Uri(url);
+                var stream = client.DownloadString(downloadURI);
+                dynamic jsonFile = JsonConvert.DeserializeObject(stream);
+
+                //Retrive the url of image from Json file
+                var podUrl = (string)jsonFile.hdurl;
+
+                //Upload image to firebase
+                string firebaseUrl = UploadPODToFireBase(podUrl, "test");
+
+
+                using (PlanetsEntities context = new PlanetsEntities())
+                {
+                    var newPod = new PictureOfTheDay
+                    {
+                        URL = firebaseUrl,
+                        Title = (string)jsonFile.title,
+                        Explanation = (string)jsonFile.explanation,
+                        ReleaseDate = (DateTime)jsonFile.date
+                    };
+
+                    context.PictureOfTheDays.Add(newPod);
+                    context.SaveChanges();
+                }
             }
         }
 
@@ -81,10 +82,10 @@ namespace PlanetsDAL
         public void DeletePictureOfTheDay(PlanetsBE.PictureOfTheDay pictureOfTheDay)
         {
             using (PlanetsEntities context = new PlanetsEntities())
-            {    
+            {
                 PictureOfTheDay pod = context.PictureOfTheDays.FirstOrDefault(x => x.Id == pictureOfTheDay.Id);
-                
-                DeletePODFromFirebase(pod); 
+
+                DeletePODFromFirebase(pod);
                 context.PictureOfTheDays.Remove(pod);
 
                 context.SaveChanges();
@@ -95,9 +96,10 @@ namespace PlanetsDAL
         {
             PlanetsBE.PictureOfTheDay result = new PlanetsBE.PictureOfTheDay();
             result.Id = pod.Id;
-            result.Name = pod.Name;
+            result.Title = pod.Title;
             result.ReleaseDate = pod.ReleaseDate;
             result.Url = pod.URL;
+            result.Explanation = pod.Explanation;
 
             return result;
         }
@@ -106,9 +108,10 @@ namespace PlanetsDAL
         {
             PictureOfTheDay result = new PictureOfTheDay();
             result.Id = pod.Id;
-            result.Name = pod.Name;
+            result.Title = pod.Title;
             result.ReleaseDate = pod.ReleaseDate;
             result.URL = pod.Url;
+            result.Explanation = pod.Explanation;
 
             return result;
         }

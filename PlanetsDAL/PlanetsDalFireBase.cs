@@ -1,6 +1,8 @@
 ﻿using Firebase.Storage;
+using System;
 using System.IO;
-
+using System.Net;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PlanetsDAL
 {
@@ -9,7 +11,7 @@ namespace PlanetsDAL
         //Picture
         public string UploadPictureToFireBase(PlanetsBE.Picture picture)
         {
-            var stream = File.Open(picture.Path, FileMode.Open);
+            FileStream stream = File.Open(picture.Path, FileMode.Open);
 
             var task = new FirebaseStorage("planets-d4e9c.appspot.com")
             .Child("Planets")
@@ -27,32 +29,36 @@ namespace PlanetsDAL
         {
             int length = picture.PictureName.Length;
             var pictureName = picture.PictureName.Insert(length, ".jpg");
-            
+
             var client = new FirebaseStorage("planets-d4e9c.appspot.com");
             var child = client.Child("Planets").Child(pictureName);
-            
+
             await child.DeleteAsync();
         }
 
         //PictureOfTheDay
-        public string UploadPODToFireBase(string nasaUrl, string pictureName)
+        public string UploadPODToFireBase(string url, string title)
         {
-            var stream = File.Open(nasaUrl, FileMode.Open);
+            using (WebClient client = new WebClient())
+            {
+                using (var stream = client.OpenRead(url))
+                {      
+                    var task = new FirebaseStorage("planets-d4e9c.appspot.com")
+                        .Child("PictureOfTheDay")
+                        .Child(title + ".jpg")
+                        .PutAsync(stream);
 
-            var task = new FirebaseStorage("planets-d4e9c.appspot.com")
-            .Child("PictureOfTheDay")
-            .Child(pictureName + ".jpg")
-            .PutAsync(stream);
-
-
-            var downloadUrl = task.TargetUrl;
-            return downloadUrl;
+                    var downloadUrl = task.TargetUrl;
+                    string newPath = downloadUrl.Replace("?name=", "/");
+                    return newPath + "?alt=media&token=5ecc2fe8-72fb-40d1-bd98-1656389dca15";
+                }
+            }
         }
 
         public async void DeletePODFromFirebase(PictureOfTheDay pod)
         {
-            int length = pod.Name.Length;
-            var podName = pod.Name.Insert(length, ".jpg");
+            int length = pod.Title.Length;
+            var podName = pod.Title.Insert(length, ".jpg");
 
             await new FirebaseStorage("planets-d4e9c.appspot.com").Child("PictureOfTheDay").Child(podName).DeleteAsync();
         }
