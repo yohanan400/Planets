@@ -47,7 +47,7 @@ namespace PlanetsDAL
             using (PlanetsEntities context = new PlanetsEntities())
             {
                 Planet newPlanet = context.Planets.FirstOrDefault(x => x.Name == planet.Name);
-                 PlanetsClone(newPlanet, planet);
+                PlanetsClone(newPlanet, planet);
                 
                 context.SaveChanges(); 
             }

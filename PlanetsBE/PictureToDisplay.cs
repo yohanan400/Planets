@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace PlanetsBE
 {
-    public class PictureOfTheDay
+    public class PictureToDisplay
     {
-        public int Id { get; set; }
         public string Name { get; set; }
-        public DateTime ReleaseDate { get; set; }
-        public string Url { get; set; }
+        public Byte[] Picture { get; set; }
     }
 }

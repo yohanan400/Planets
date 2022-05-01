@@ -17,5 +17,6 @@ namespace PlanetsDAL
         public int Id { get; set; }
         public int PlanetId { get; set; }
         public string Path { get; set; }
+        public string PictureName { get; set; }
     }
 }

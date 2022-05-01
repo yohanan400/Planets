@@ -63,6 +63,7 @@
     <Compile Include="Comet.cs" />
     <Compile Include="Picture.cs" />
     <Compile Include="PictureOfTheDay.cs" />
+    <Compile Include="PictureToDisplay.cs" />
     <Compile Include="Planet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
