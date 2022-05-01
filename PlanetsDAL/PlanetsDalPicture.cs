@@ -75,13 +75,13 @@ namespace PlanetsDAL
                 {
                     PlanetsBE.MediaInfo mediaInfo = new PlanetsBE.MediaInfo();
 
-                    mediaInfo.title = (string)item["data"][0]["title"];
-                    mediaInfo.description = (string)item["data"][0]["description"];
-                    mediaInfo.date_created = (DateTime)item["data"][0]["date_created"];
-                    mediaInfo.media_type = (string)item["data"][0]["media_type"];
-                    if (mediaInfo.media_type != "audio")
+                    mediaInfo.Title = (string)item["data"][0]["title"];
+                    mediaInfo.Description = (string)item["data"][0]["description"];
+                    mediaInfo.DateCreated = (DateTime)item["data"][0]["date_created"];
+                    mediaInfo.MediaType = (string)item["data"][0]["media_type"];
+                    if (mediaInfo.MediaType != "audio")
                     {
-                        mediaInfo.href = (string)item["links"][0]["href"];
+                        mediaInfo.Href = (string)item["links"][0]["href"];
                     }
 
                     mediaInfos.Add(mediaInfo) ;
