@@ -15,7 +15,6 @@ namespace PlanetsDAL
         {
             var url = "https://api.nasa.gov/planetary/apod?api_key=Ge2ay3CtDiciZEJ3z1BAb0rQS9GElv8LIrntvwCJ";
 
-
             using (WebClient client = new WebClient())
             {
                 //Download Json file
@@ -27,8 +26,7 @@ namespace PlanetsDAL
                 var podUrl = (string)jsonFile.hdurl;
 
                 //Upload image to firebase
-                string firebaseUrl = UploadPODToFireBase(podUrl, "test");
-
+                string firebaseUrl = UploadPODToFireBase(podUrl, (string)jsonFile.title);
 
                 using (PlanetsEntities context = new PlanetsEntities())
                 {

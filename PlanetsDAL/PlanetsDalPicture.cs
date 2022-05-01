@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -21,7 +23,6 @@ namespace PlanetsDAL
 
         public Byte[] GetPictureById(int pictureId)
         {
-            
             using (PlanetsEntities context = new PlanetsEntities())
             {
                 var v = context.Pictures.FirstOrDefault(x => x.Id == pictureId);
@@ -33,7 +34,6 @@ namespace PlanetsDAL
                     return client.DownloadData(downloadURI);
                 }
             }
-
         }
 
         public IEnumerable<int> GetPicturesIds()
@@ -45,6 +45,50 @@ namespace PlanetsDAL
             }
         }
 
+        public List<PlanetsBE.MediaInfo> GetMediaFromNasa(string subject)
+        {
+            string url = "https://images-api.nasa.gov/search?q=";
+            if (subject == string.Empty)
+            {
+                url += "Earth";
+            }
+            else
+            {
+                url += subject;
+            }
+
+            using (WebClient client = new WebClient())
+            {
+                //Download Json file
+                Uri downloadURI = new Uri(url);
+                var stream = client.DownloadString(downloadURI);
+                dynamic jsonFile = JsonConvert.DeserializeObject(stream);
+
+
+                List<PlanetsBE.MediaInfo> mediaInfos = new List<PlanetsBE.MediaInfo>();
+
+                JObject obj = JObject.Parse(stream);
+                var jarr = obj["collection"]["items"].Value<JArray>();
+
+                
+                foreach (var item in jarr)
+                {
+                    PlanetsBE.MediaInfo mediaInfo = new PlanetsBE.MediaInfo();
+
+                    mediaInfo.title = (string)item["data"][0]["title"];
+                    mediaInfo.description = (string)item["data"][0]["description"];
+                    mediaInfo.date_created = (DateTime)item["data"][0]["date_created"];
+                    mediaInfo.media_type = (string)item["data"][0]["media_type"];
+                    if (mediaInfo.media_type != "audio")
+                    {
+                        mediaInfo.href = (string)item["links"][0]["href"];
+                    }
+
+                    mediaInfos.Add(mediaInfo) ;
+                } 
+                return mediaInfos;
+            }
+        }
         public void UpdatePicture(PlanetsBE.Picture picture)
         {
             using (PlanetsEntities context = new PlanetsEntities())

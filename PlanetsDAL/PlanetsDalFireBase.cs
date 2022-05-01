@@ -8,6 +8,7 @@ namespace PlanetsDAL
 {
     public partial class PlanetsDal
     {
+      
         //Picture
         public string UploadPictureToFireBase(PlanetsBE.Picture picture)
         {
@@ -41,17 +42,16 @@ namespace PlanetsDAL
         {
             using (WebClient client = new WebClient())
             {
-                using (var stream = client.OpenRead(url))
-                {      
-                    var task = new FirebaseStorage("planets-d4e9c.appspot.com")
-                        .Child("PictureOfTheDay")
-                        .Child(title + ".jpg")
-                        .PutAsync(stream);
+                MemoryStream ms = new MemoryStream(client.DownloadData(url));
 
-                    var downloadUrl = task.TargetUrl;
-                    string newPath = downloadUrl.Replace("?name=", "/");
-                    return newPath + "?alt=media&token=5ecc2fe8-72fb-40d1-bd98-1656389dca15";
-                }
+                var task = new FirebaseStorage("planets-d4e9c.appspot.com")
+                    .Child("PictureOfTheDay")
+                    .Child(title + ".jpg")
+                    .PutAsync(ms);
+
+                var downloadUrl = task.TargetUrl;
+                string newPath = downloadUrl.Replace("?name=", "/");
+                return newPath + "?alt=media&token=5ecc2fe8-72fb-40d1-bd98-1656389dca15";
             }
         }
 

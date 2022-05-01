@@ -24,8 +24,8 @@ namespace Planets
             showCB.ItemsSource = dalReference.GetPicturesIds();
             podCB.ItemsSource = from pod in dalReference.GetAllPictureOfTheDay() select pod.Id;
 
-            dalReference.AddPOD();
-
+            //dalReference.AddPOD();
+            dalReference.GetMediaFromNasa("");
 
         }
 

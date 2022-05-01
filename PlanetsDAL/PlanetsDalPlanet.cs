@@ -9,10 +9,16 @@ namespace PlanetsDAL
 {
     public partial class PlanetsDal
     {
-        public void AddPlanet(PlanetsBE.Planet planet)
+        public void AddPlanet(PlanetsBE.Planet planet, PlanetsBE.Picture picture)
         {
             using (PlanetsEntities context = new PlanetsEntities())
             {
+                //Update the profile picture of the planet to DB and Firebase
+                int picId = context.Pictures.Add(ClonePicture(picture)).Id;
+                planet.ProfilePicture = picId;
+                UploadPictureToFireBase(picture);
+
+                //Update the planet to DB
                 context.Planets.Add(PlanetsClone(planet));
                 context.SaveChanges();
             }
