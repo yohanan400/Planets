@@ -310,7 +310,7 @@
       <DependentUpon>PlanetsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PlanetsDal.cs" />
-    <Compile Include="PlanetsDalAsteroid.cs" />
+    <Compile Include="PlanetsDalNeo.cs" />
     <Compile Include="PlanetsDalFireBase.cs" />
     <Compile Include="PlanetsDalPicture.cs" />
     <Compile Include="PlanetsDalPlanet.cs" />

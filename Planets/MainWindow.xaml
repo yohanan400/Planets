@@ -25,6 +25,7 @@
         <Button Content="refresh" HorizontalAlignment="Left" Margin="47,15,0,0" VerticalAlignment="Top" Width="44" Click="Button_Click_6"/>
         <ComboBox Name="podCB" HorizontalAlignment="Left" Margin="34,113,0,0" VerticalAlignment="Top" Width="120"/>
         <Button Content="delete pod" HorizontalAlignment="Left" Margin="47,147,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_7"/>
+        <ComboBox Name="mediaCB" HorizontalAlignment="Left" Margin="57,382,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

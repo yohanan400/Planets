@@ -5,7 +5,7 @@ namespace PlanetsDAL
     partial class PlanetsDal
     {
         SqlConnection conn = new SqlConnection();
-
+        const string API_KEY = "Ge2ay3CtDiciZEJ3z1BAb0rQS9GElv8LIrntvwCJ";
         public void ConnectToDB()
         {
             //prepare conectio string

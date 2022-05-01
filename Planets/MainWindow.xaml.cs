@@ -25,7 +25,9 @@ namespace Planets
             podCB.ItemsSource = from pod in dalReference.GetAllPictureOfTheDay() select pod.Id;
 
             //dalReference.AddPOD();
-            dalReference.GetMediaFromNasa("");
+            mediaCB.ItemsSource = from item in dalReference.GetMediaFromNasa("") select item.Title;
+
+            dalReference.GetBetweenDatesNeos(new DateTime(2015, 9, 7), new DateTime(2015, 9, 8));
 
         }
 
