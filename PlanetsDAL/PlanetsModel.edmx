@@ -24,7 +24,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="PlanetId" Type="int" Nullable="false" />
           <Property Name="Path" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="PictureName" Type="varchar" MaxLength="50" />
@@ -33,7 +33,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Title" Type="varchar(max)" Nullable="false" />
           <Property Name="ReleaseDate" Type="date" Nullable="false" />
           <Property Name="URL" Type="varchar" MaxLength="200" Nullable="false" />
@@ -43,7 +43,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Type" Type="varchar" MaxLength="20" />
           <Property Name="mass" Type="float" Nullable="false" />
