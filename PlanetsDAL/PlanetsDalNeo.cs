@@ -28,16 +28,23 @@ namespace PlanetsDAL
                 JObject obj = JObject.Parse(stream);
                 var jarr = obj["near_earth_objects"].Value<JToken>();
 
-
-                foreach (var item in jarr)
+                foreach (var itm in jarr)
                 {
-                    PlanetsBE.Neo neo = new PlanetsBE.Neo();
+                    foreach (var item in itm)
+                    {
+                        neos.AddRange(from it in item
+                                select new PlanetsBE.Neo
+                                {
+                                    SerchDate = DateTime.Parse(((JProperty)itm).Name),
 
-                    //neo.SerchDate = (DateTime)item;
 
-                    //var v = from item
+                                    Id = (int)it["id"],
+                                    Name = (string)it["name"],
+                                    EstimatedDiameter = (float)it["estimated_diameter"]["kilometers"]["estimated_diameter_min"],
+                                    IsPotentiallyHazardousAsteroid = (bool)it["is_potentially_hazardous_asteroid"]
 
-                    neos.Add(neo);
+                                });
+                    }
                 }
                 return neos;
             }
