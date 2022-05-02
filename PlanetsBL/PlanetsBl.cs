@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PlanetsBL
 {
-    public class Class1
+    public partial class PlanetsBl
     {
     }
 }

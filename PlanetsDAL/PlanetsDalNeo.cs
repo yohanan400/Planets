@@ -20,8 +20,6 @@ namespace PlanetsDAL
                 //Download Json file
                 Uri downloadURI = new Uri(url);
                 var stream = client.DownloadString(downloadURI);
-                dynamic jsonFile = JsonConvert.DeserializeObject(stream);
-
 
                 List<PlanetsBE.Neo> neos = new List<PlanetsBE.Neo>();
 
@@ -37,17 +35,17 @@ namespace PlanetsDAL
                                 {
                                     SerchDate = DateTime.Parse(((JProperty)itm).Name),
 
-
                                     Id = (int)it["id"],
                                     Name = (string)it["name"],
                                     EstimatedDiameter = (float)it["estimated_diameter"]["kilometers"]["estimated_diameter_min"],
                                     IsPotentiallyHazardousAsteroid = (bool)it["is_potentially_hazardous_asteroid"]
-
                                 });
                     }
                 }
                 return neos;
             }
         }
+
+       
     }
 }

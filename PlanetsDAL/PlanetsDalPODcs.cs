@@ -54,15 +54,15 @@ namespace PlanetsDAL
 
         public List<PlanetsBE.PictureOfTheDay> GetAllPictureOfTheDay()
         {
-            List<PlanetsBE.PictureOfTheDay> pod = new List<PlanetsBE.PictureOfTheDay>();
+            List<PlanetsBE.PictureOfTheDay> pods = new List<PlanetsBE.PictureOfTheDay>();
             using (PlanetsEntities context = new PlanetsEntities())
             {
                 foreach (var item in context.PictureOfTheDays)
                 {
-                    pod.Add(PodClone(item));
+                    pods.Add(PodClone(item));
                 }
 
-                return pod;
+                return pods;
             }
         }
 
