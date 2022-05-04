@@ -30,5 +30,6 @@ namespace PlanetsDAL
         public virtual DbSet<Picture> Pictures { get; set; }
         public virtual DbSet<PictureOfTheDay> PictureOfTheDays { get; set; }
         public virtual DbSet<Planet> Planets { get; set; }
+        public virtual DbSet<Neo> Neos { get; set; }
     }
 }

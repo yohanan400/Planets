@@ -20,5 +20,17 @@ namespace Planets
         {
             InitializeComponent();
         }
+
+        private void PodsB_Click(object sender, RoutedEventArgs e)
+        {
+            NeovUC.Visibility = Visibility.Hidden;
+            PodUC.Visibility = Visibility.Visible;
+        }
+
+        private void NeosB_Click(object sender, RoutedEventArgs e)
+        {
+            NeovUC.Visibility = Visibility.Visible;
+            PodUC.Visibility = Visibility.Hidden;
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace PlanetsBE
         public string Name { get; set; }
         public DateTime SerchDate { get; set; }
         //Minimmum estimation
-        public float EstimatedDiameter { get; set; }
+        public double EstimatedDiameter { get; set; }
         public bool IsPotentiallyHazardousAsteroid { get; set; }
     }
 }

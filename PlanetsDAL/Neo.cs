@@ -12,12 +12,12 @@ namespace PlanetsDAL
     using System;
     using System.Collections.Generic;
     
-    public partial class PictureOfTheDay
+    public partial class Neo
     {
         public int Id { get; set; }
-        public string Title { get; set; }
-        public System.DateTime ReleaseDate { get; set; }
-        public string URL { get; set; }
-        public string Explanation { get; set; }
+        public string Name { get; set; }
+        public System.DateTime SerchDate { get; set; }
+        public double EstimatedDiameter { get; set; }
+        public string IsPotentiallyHazardousAsteroid { get; set; }
     }
 }

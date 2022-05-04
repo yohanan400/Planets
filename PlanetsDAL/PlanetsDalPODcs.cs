@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,17 +29,57 @@ namespace PlanetsDAL
                 //Upload image to firebase
                 string firebaseUrl = UploadPODToFireBase(podUrl, (string)jsonFile.title);
 
+
+                var newPod = new PictureOfTheDay
+                {
+                    URL = firebaseUrl,
+                    Title = (string)jsonFile.title,
+                    Explanation = (string)jsonFile.explanation,
+                    ReleaseDate = (DateTime)jsonFile.date
+                };
                 using (PlanetsEntities context = new PlanetsEntities())
                 {
-                    var newPod = new PictureOfTheDay
-                    {
-                        URL = firebaseUrl,
-                        Title = (string)jsonFile.title,
-                        Explanation = (string)jsonFile.explanation,
-                        ReleaseDate = (DateTime)jsonFile.date
-                    };
-
                     context.PictureOfTheDays.Add(newPod);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public void DownloadPODsToDB(DateTime start, DateTime end)
+        {
+            var url = $"https://api.nasa.gov/planetary/apod?start_date={start.GetDateTimeFormats()[7]}&end_date={end.GetDateTimeFormats()[7]}&api_key=Ge2ay3CtDiciZEJ3z1BAb0rQS9GElv8LIrntvwCJ";
+
+            using (WebClient client = new WebClient())
+            {
+                //Download Json file
+                Uri downloadURI = new Uri(url);
+                var stream = client.DownloadString(downloadURI);
+
+                List<PictureOfTheDay> pods = new List<PictureOfTheDay>();
+                JArray obj = JArray.Parse(stream);
+
+                foreach (var item in obj.Value<JToken>())
+                {
+                    //Retrive the url of image from Json file
+                    var podUrl = (string)item["hdurl"];
+
+                    //Upload image to firebase
+                    string firebaseUrl = UploadPODToFireBase(podUrl, (string)item["title"]);
+
+
+                    pods.Add(new PictureOfTheDay
+                                 {
+                                     URL = firebaseUrl,
+                                     Title = (string)item["title"],
+                                     Explanation = (string)item["explanation"],
+                                     ReleaseDate = (DateTime)item["date"]
+                                 }
+                    );
+                }
+
+                using (PlanetsEntities context = new PlanetsEntities())
+                {
+                    context.PictureOfTheDays.AddRange(pods);
                     context.SaveChanges();
                 }
             }

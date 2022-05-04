@@ -20,11 +20,21 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="Neo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SerchDate" Type="datetime" Nullable="false" />
+          <Property Name="EstimatedDiameter" Type="float" Nullable="false" />
+          <Property Name="IsPotentiallyHazardousAsteroid" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
         <EntityType Name="Picture">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PlanetId" Type="int" Nullable="false" />
           <Property Name="Path" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="PictureName" Type="varchar" MaxLength="50" />
@@ -33,17 +43,17 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="varchar(max)" Nullable="false" />
           <Property Name="ReleaseDate" Type="date" Nullable="false" />
-          <Property Name="URL" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="URL" Type="varchar(max)" Nullable="false" />
           <Property Name="Explanation" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Planet">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Type" Type="varchar" MaxLength="20" />
           <Property Name="mass" Type="float" Nullable="false" />
@@ -61,6 +71,7 @@
         <EntityContainer Name="PlanetsModelStoreContainer">
           <EntitySet Name="Asteroid" EntityType="Self.Asteroid" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comet" EntityType="Self.Comet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Neo" EntityType="Self.Neo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PictureOfTheDay" EntityType="Self.PictureOfTheDay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Planet" EntityType="Self.Planet" Schema="dbo" store:Type="Tables" />
@@ -69,12 +80,20 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PlanetsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PlanetsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Asteroids" EntityType="PlanetsModel.Asteroid" />
+          <EntitySet Name="Comets" EntityType="PlanetsModel.Comet" />
+          <EntitySet Name="Pictures" EntityType="PlanetsModel.Picture" />
+          <EntitySet Name="PictureOfTheDays" EntityType="PlanetsModel.PictureOfTheDay" />
+          <EntitySet Name="Planets" EntityType="PlanetsModel.Planet" />
+          <EntitySet Name="Neos" EntityType="PlanetsModel.Neo" />
+        </EntityContainer>
         <EntityType Name="Asteroid">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="DiscoveryDate" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="Comet">
@@ -82,33 +101,33 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Picture">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PlanetId" Type="Int32" Nullable="false" />
           <Property Name="Path" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="PictureName" Type="String" Unicode="false" FixedLength="false" MaxLength="50" />
+          <Property Name="PictureName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PictureOfTheDay">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="URL" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ReleaseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="URL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Explanation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Planet">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="mass" Type="Double" Nullable="false" />
           <Property Name="TrackRadius" Type="Double" Nullable="false" />
@@ -122,33 +141,36 @@
           <Property Name="Atmosphere" Type="Int32" Nullable="false" />
           <Property Name="ProfilePicture" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="PlanetsEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Asteroids" EntityType="Self.Asteroid" />
-          <EntitySet Name="Comets" EntityType="Self.Comet" />
-          <EntitySet Name="Pictures" EntityType="Self.Picture" />
-          <EntitySet Name="PictureOfTheDays" EntityType="Self.PictureOfTheDay" />
-          <EntitySet Name="Planets" EntityType="Self.Planet" />
-        </EntityContainer>
+        <EntityType Name="Neo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SerchDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EstimatedDiameter" Type="Double" Nullable="false" />
+          <Property Name="IsPotentiallyHazardousAsteroid" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PlanetsModelStoreContainer" CdmEntityContainer="PlanetsEntities">
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PlanetsModelStoreContainer" CdmEntityContainer="PlanetsEntities">
           <EntitySetMapping Name="Asteroids">
             <EntityTypeMapping TypeName="PlanetsModel.Asteroid">
               <MappingFragment StoreEntitySet="Asteroid">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="DiscoveryDate" ColumnName="DiscoveryDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Comets">
             <EntityTypeMapping TypeName="PlanetsModel.Comet">
               <MappingFragment StoreEntitySet="Comet">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -159,43 +181,53 @@
                 <ScalarProperty Name="Path" ColumnName="Path" />
                 <ScalarProperty Name="PlanetId" ColumnName="PlanetId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                </MappingFragment>
+              </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PictureOfTheDays">
             <EntityTypeMapping TypeName="PlanetsModel.PictureOfTheDay">
               <MappingFragment StoreEntitySet="PictureOfTheDay">
                 <ScalarProperty Name="Explanation" ColumnName="Explanation" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
-                <ScalarProperty Name="URL" ColumnName="URL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Planets">
             <EntityTypeMapping TypeName="PlanetsModel.Planet">
               <MappingFragment StoreEntitySet="Planet">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="mass" ColumnName="mass" />
-                <ScalarProperty Name="TrackRadius" ColumnName="TrackRadius" />
-                <ScalarProperty Name="DurationOfRoute" ColumnName="DurationOfRoute" />
-                <ScalarProperty Name="TrackInclination" ColumnName="TrackInclination" />
-                <ScalarProperty Name="Diameter" ColumnName="Diameter" />
-                <ScalarProperty Name="Eccentricity" ColumnName="Eccentricity" />
-                <ScalarProperty Name="DayLength" ColumnName="DayLength" />
-                <ScalarProperty Name="Moons" ColumnName="Moons" />
-                <ScalarProperty Name="PlanetaryRings" ColumnName="PlanetaryRings" />
-                <ScalarProperty Name="Atmosphere" ColumnName="Atmosphere" />
                 <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+                <ScalarProperty Name="Atmosphere" ColumnName="Atmosphere" />
+                <ScalarProperty Name="PlanetaryRings" ColumnName="PlanetaryRings" />
+                <ScalarProperty Name="Moons" ColumnName="Moons" />
+                <ScalarProperty Name="DayLength" ColumnName="DayLength" />
+                <ScalarProperty Name="Eccentricity" ColumnName="Eccentricity" />
+                <ScalarProperty Name="Diameter" ColumnName="Diameter" />
+                <ScalarProperty Name="TrackInclination" ColumnName="TrackInclination" />
+                <ScalarProperty Name="DurationOfRoute" ColumnName="DurationOfRoute" />
+                <ScalarProperty Name="TrackRadius" ColumnName="TrackRadius" />
+                <ScalarProperty Name="mass" ColumnName="mass" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Neos">
+            <EntityTypeMapping TypeName="PlanetsModel.Neo">
+              <MappingFragment StoreEntitySet="Neo">
+                <ScalarProperty Name="IsPotentiallyHazardousAsteroid" ColumnName="IsPotentiallyHazardousAsteroid" />
+                <ScalarProperty Name="EstimatedDiameter" ColumnName="EstimatedDiameter" />
+                <ScalarProperty Name="SerchDate" ColumnName="SerchDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
         </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -209,7 +241,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

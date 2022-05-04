@@ -5,11 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f13235259f9245d296a422fd3c0e74c5" Name="Diagram1">
-        <EntityTypeShape EntityType="PlanetsModel.Asteroid" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PlanetsModel.Comet" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PlanetsModel.Picture" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PlanetsModel.PictureOfTheDay" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PlanetsModel.Planet" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PlanetsModel.Asteroid" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PlanetsModel.Comet" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PlanetsModel.Picture" Width="1.5" PointX="2.75" PointY="2.5" />
+        <EntityTypeShape EntityType="PlanetsModel.PictureOfTheDay" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PlanetsModel.Planet" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PlanetsModel.Neo" Width="1.5" PointX="6.625" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

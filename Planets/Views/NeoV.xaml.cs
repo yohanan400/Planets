@@ -10,18 +10,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Planets.Views
 {
     /// <summary>
-    /// Interaction logic for Pod.xaml
+    /// Interaction logic for NeoV.xaml
     /// </summary>
-    public partial class Pod : Window
+    public partial class NeoV : UserControl
     {
-        public Pod()
+        private ViewModels.NeoVM NeoVM { get; set; }
+        public NeoV()
         {
             InitializeComponent();
+            NeoVM = new ViewModels.NeoVM();
+            this.DataContext = NeoVM;
         }
     }
 }
