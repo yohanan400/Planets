@@ -6,7 +6,7 @@
         xmlns:uc="clr-namespace:Planets.Views"
         xmlns:local="clr-namespace:Planets"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Menu" Height="1080" Width="1920" WindowStyle="None" Foreground="White" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Cursor="Hand" WindowState="Maximized">
     <Window.Resources>
        
     </Window.Resources>

@@ -16,9 +16,7 @@ namespace PlanetsDAL
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Type { get; set; }
         public double mass { get; set; }
-        public double TrackRadius { get; set; }
         public double DurationOfRoute { get; set; }
         public double TrackInclination { get; set; }
         public double Diameter { get; set; }
@@ -26,7 +24,8 @@ namespace PlanetsDAL
         public double DayLength { get; set; }
         public int Moons { get; set; }
         public int PlanetaryRings { get; set; }
-        public int Atmosphere { get; set; }
+        public string Atmosphere { get; set; }
         public string ProfilePictureURL { get; set; }
+        public double EquatorialRadius { get; set; }
     }
 }

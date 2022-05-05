@@ -55,9 +55,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Type" Type="varchar" MaxLength="20" />
           <Property Name="mass" Type="float" Nullable="false" />
-          <Property Name="TrackRadius" Type="float" Nullable="false" />
+          <Property Name="EquatorialRadius" Type="float" Nullable="false" />
           <Property Name="DurationOfRoute" Type="float" Nullable="false" />
           <Property Name="TrackInclination" Type="float" Nullable="false" />
           <Property Name="Diameter" Type="float" Nullable="false" />
@@ -65,7 +64,7 @@
           <Property Name="DayLength" Type="float" Nullable="false" />
           <Property Name="Moons" Type="int" Nullable="false" />
           <Property Name="PlanetaryRings" Type="int" Nullable="false" />
-          <Property Name="Atmosphere" Type="int" Nullable="false" />
+          <Property Name="Atmosphere" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="ProfilePictureURL" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityContainer Name="PlanetsModelStoreContainer">
@@ -128,9 +127,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="mass" Type="Double" Nullable="false" />
-          <Property Name="TrackRadius" Type="Double" Nullable="false" />
           <Property Name="DurationOfRoute" Type="Double" Nullable="false" />
           <Property Name="TrackInclination" Type="Double" Nullable="false" />
           <Property Name="Diameter" Type="Double" Nullable="false" />
@@ -138,8 +135,9 @@
           <Property Name="DayLength" Type="Double" Nullable="false" />
           <Property Name="Moons" Type="Int32" Nullable="false" />
           <Property Name="PlanetaryRings" Type="Int32" Nullable="false" />
-          <Property Name="Atmosphere" Type="Int32" Nullable="false" />
+          <Property Name="Atmosphere" Type="String" Nullable="false" />
           <Property Name="ProfilePictureURL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EquatorialRadius" Type="Double" Nullable="false" />
         </EntityType>
         <EntityType Name="Neo">
           <Key>
@@ -198,6 +196,7 @@
           <EntitySetMapping Name="Planets">
             <EntityTypeMapping TypeName="PlanetsModel.Planet">
               <MappingFragment StoreEntitySet="Planet">
+                <ScalarProperty Name="EquatorialRadius" ColumnName="EquatorialRadius" />
                 <ScalarProperty Name="ProfilePictureURL" ColumnName="ProfilePictureURL" />
                 <ScalarProperty Name="Atmosphere" ColumnName="Atmosphere" />
                 <ScalarProperty Name="PlanetaryRings" ColumnName="PlanetaryRings" />
@@ -207,9 +206,7 @@
                 <ScalarProperty Name="Diameter" ColumnName="Diameter" />
                 <ScalarProperty Name="TrackInclination" ColumnName="TrackInclination" />
                 <ScalarProperty Name="DurationOfRoute" ColumnName="DurationOfRoute" />
-                <ScalarProperty Name="TrackRadius" ColumnName="TrackRadius" />
                 <ScalarProperty Name="mass" ColumnName="mass" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

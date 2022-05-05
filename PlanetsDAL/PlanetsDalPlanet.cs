@@ -75,9 +75,8 @@ namespace PlanetsDAL
             Planet newPlanet = new Planet();
 
             newPlanet.Name = planet.Name;
-            newPlanet.Type = planet.Type;
             newPlanet.mass = planet.Mass;
-            newPlanet.TrackRadius = planet.TrackRadius;
+            newPlanet.EquatorialRadius = planet.EquatorialRadius;
             newPlanet.DurationOfRoute = planet.DurationOfRoute;
             newPlanet.TrackInclination = planet.TrackInclination;
             newPlanet.Diameter = planet.Diameter;
@@ -97,9 +96,8 @@ namespace PlanetsDAL
 
             newPlanet.Id = planet.Id;
             newPlanet.Name = planet.Name;
-            newPlanet.Type = planet.Type;
             newPlanet.Mass = planet.mass;
-            newPlanet.TrackRadius = planet.TrackRadius;
+            newPlanet.EquatorialRadius = planet.EquatorialRadius;
             newPlanet.DurationOfRoute = planet.DurationOfRoute;
             newPlanet.TrackInclination = planet.TrackInclination;
             newPlanet.Diameter = planet.Diameter;
@@ -116,9 +114,8 @@ namespace PlanetsDAL
         public void PlanetsClone(Planet newPlanet, PlanetsBE.Planet planet)
         {
             newPlanet.Name = planet.Name;
-            newPlanet.Type = planet.Type;
             newPlanet.mass = planet.Mass;
-            newPlanet.TrackRadius = planet.TrackRadius;
+            newPlanet.EquatorialRadius = planet.EquatorialRadius;
             newPlanet.DurationOfRoute = planet.DurationOfRoute;
             newPlanet.TrackInclination = planet.TrackInclination;
             newPlanet.Diameter = planet.Diameter;

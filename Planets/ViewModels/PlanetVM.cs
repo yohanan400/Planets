@@ -13,7 +13,7 @@ namespace Planets.ViewModels
 {
     public class PlanetVM : INotifyPropertyChanged
     {
-        public PlanetM planetM;
+        private PlanetM planetM;
         public string name;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -29,6 +29,7 @@ namespace Planets.ViewModels
                     PropertyChanged(this, new PropertyChangedEventArgs("currentPlanet"));
             }
         }
+
         public SelectPlanetCommand SelectPlanetCommand { get; set; }
 
         public PlanetVM()

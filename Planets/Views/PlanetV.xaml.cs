@@ -32,7 +32,7 @@ namespace Planets.Views
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            PlanetVM.currentPlanet = (Planet)PickupCB.SelectedItem;
+           // PlanetVM.currentPlanet = (Planet)PickupCB.SelectedItem;
         }
     }
 }

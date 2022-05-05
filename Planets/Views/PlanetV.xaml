@@ -4,22 +4,80 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Planets.Views"
+             xmlns:com="clr-namespace:Planets.Commands"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    
-    
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="White">
+
+    <UserControl.Resources>
+    </UserControl.Resources>
+
     <Grid>
-        <ComboBox Name="PickupCB" SelectionChanged="ComboBox_SelectionChanged"  ItemsSource="{Binding Planets}" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="225,17,0,0" VerticalAlignment="Top" Width="391"/>
+        <!--<ComboBox Name="PickupCB" SelectionChanged="ComboBox_SelectionChanged"  ItemsSource="{Binding Planets}" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="225,17,0,0" VerticalAlignment="Top" Width="391"/>-->
 
-        <Grid DataContext="{Binding currentPlanet}">
-            <Image Source="{Binding ProfilePictureURL}" HorizontalAlignment="Left" Height="173" Margin="148,51,0,0" VerticalAlignment="Top" Width="456" RenderTransformOrigin="0.5,0.5"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="ViewColumn" Width="*"/>
+                <ColumnDefinition x:Name="Info1Column" Width="2*" />
+            </Grid.ColumnDefinitions>
 
-            <TextBlock HorizontalAlignment="Left" Margin="232,247,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="108"/>
-            <TextBlock HorizontalAlignment="Left" Margin="443,235,0,0" TextWrapping="Wrap" Text="{Binding Type}" VerticalAlignment="Top" Width="111"/>
-            <TextBlock HorizontalAlignment="Left" Margin="232,303,0,0" TextWrapping="Wrap" Text="{Binding Mass}" VerticalAlignment="Top" Width="108"/>
-            <TextBlock HorizontalAlignment="Left" Margin="443,296,0,0" TextWrapping="Wrap" Text="{Binding TrackRadius}" VerticalAlignment="Top" RenderTransformOrigin="-0.406,0.508" Width="111"/>
-            <TextBlock HorizontalAlignment="Left" Margin="232,370,0,0" TextWrapping="Wrap" Text="{Binding DurationOfRoute}" VerticalAlignment="Top" Width="108"/>
-            <TextBlock HorizontalAlignment="Left" Margin="443,370,0,0" TextWrapping="Wrap" Text="{Binding TrackInclination}" VerticalAlignment="Top" Width="111"/>
+            <ListView Grid.Column="0"  HorizontalAlignment="Left"  ItemsSource="{Binding Planets}" >
+                <!--<ListView.ItemContainerStyle>                    <Style TargetType="{x:Type ListViewItem}">                        <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>                    </Style>                </ListView.ItemContainerStyle>-->
+
+                <ListView.ItemTemplate>
+                    <DataTemplate x:Name="temp">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}" />
+                            <Image Grid.Column="0"  Source="{Binding ProfilePictureURL}"  Height="177"   Width="235" Stretch="Fill"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Grid  Grid.Column="1" Grid.ColumnSpan="2" DataContext="{Binding currentPlanet}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="Names" Width="*"/>
+                    <ColumnDefinition x:Name="Infos" Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="1" TextWrapping="Wrap" Text="Name:"  />
+            <TextBlock Grid.Column="0" Grid.Row="2" TextWrapping="Wrap" Text="Mass:" />
+            <TextBlock Grid.Column="0" Grid.Row="3" TextWrapping="Wrap" Text="EquatorialRadius:" />
+            <TextBlock Grid.Column="0" Grid.Row="4" TextWrapping="Wrap" Text="DurationOfRoute:" />
+            <TextBlock Grid.Column="0" Grid.Row="5" TextWrapping="Wrap" Text="TrackInclination:" />
+            <TextBlock Grid.Column="0" Grid.Row="6" TextWrapping="Wrap" Text="Diameter:" />
+            <TextBlock Grid.Column="0" Grid.Row="7" TextWrapping="Wrap" Text="Eccentricity:" />
+            <TextBlock Grid.Column="0" Grid.Row="8" TextWrapping="Wrap" Text="DayLength:" />
+            <TextBlock Grid.Column="0" Grid.Row="9" TextWrapping="Wrap" Text="Moons:" />
+            <TextBlock Grid.Column="0" Grid.Row="10" TextWrapping="Wrap" Text="PlanetaryRings:"/>
+            <TextBlock Grid.Column="0" Grid.Row="11" TextWrapping="Wrap" Text="Atmospheres:" />
+
+            <TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Name}"  />
+            <TextBlock Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Mass}" />
+            <TextBlock Grid.Column="1" Grid.Row="3" TextWrapping="Wrap" Text="{Binding EquatorialRadius}" />
+            <TextBlock Grid.Column="1" Grid.Row="4" TextWrapping="Wrap" Text="{Binding DurationOfRoute}" />
+            <TextBlock Grid.Column="1" Grid.Row="5" TextWrapping="Wrap" Text="{Binding TrackInclination}" />
+            <TextBlock Grid.Column="1" Grid.Row="6" TextWrapping="Wrap" Text="{Binding Diameter}" />
+            <TextBlock Grid.Column="1" Grid.Row="7" TextWrapping="Wrap" Text="{Binding Eccentricity}" />
+            <TextBlock Grid.Column="1" Grid.Row="8" TextWrapping="Wrap" Text="{Binding DayLength}" />
+            <TextBlock Grid.Column="1" Grid.Row="9" TextWrapping="Wrap" Text="{Binding Moons}" />
+            <TextBlock Grid.Column="1" Grid.Row="10" TextWrapping="Wrap" Text="{Binding PlanetaryRings}"/>
+            <TextBlock Grid.Column="1" Grid.Row="11" TextWrapping="Wrap" Text="{Binding Atmospheres}" />
+            </Grid>
         </Grid>
 
     </Grid>

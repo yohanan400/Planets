@@ -10,9 +10,8 @@ namespace PlanetsBE
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Type { get; set; }
         public double Mass { get; set; }
-        public double TrackRadius { get; set; }
+        public double EquatorialRadius { get; set; }
         public double DurationOfRoute { get; set; }
         public double TrackInclination { get; set; }
         public double Diameter { get; set; }
@@ -20,12 +19,12 @@ namespace PlanetsBE
         public double DayLength { get; set; }
         public int Moons { get; set; }
         public int PlanetaryRings { get; set; }
-        public int Atmospheres { get; set; }
+        public string Atmospheres { get; set; }
         public string ProfilePictureURL { get; set; }
 
         public override string ToString()
         {
-            return $"Id: {Id} Name: {Name}, Type: {Type}, Mass: {Mass}, TrackRadius: {TrackRadius}, DurationOfRoute: {DurationOfRoute}, "
+            return $"Id: {Id} Name: {Name}, Mass: {Mass}, TrackRadius: {EquatorialRadius}, DurationOfRoute: {DurationOfRoute}, "
                 + $"TrackInclination: {TrackInclination}, Diameter: {Diameter}, Eccentricity: {Eccentricity}, DayLength: {DayLength}, "
                 +$"Moons: {Moons}, PlanetaryRings: {PlanetaryRings}, Atmospheres: {Atmospheres}, ProfilePictureURL: {ProfilePictureURL}";
         }
