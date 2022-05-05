@@ -13,17 +13,13 @@
     </UserControl.Resources>
 
     <Grid>
-        <!--<ComboBox Name="PickupCB" SelectionChanged="ComboBox_SelectionChanged"  ItemsSource="{Binding Planets}" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="225,17,0,0" VerticalAlignment="Top" Width="391"/>-->
-
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="ViewColumn" Width="*"/>
                 <ColumnDefinition x:Name="Info1Column" Width="2*" />
             </Grid.ColumnDefinitions>
 
-            <ListView Grid.Column="0"  HorizontalAlignment="Left"  ItemsSource="{Binding Planets}" >
-                <!--<ListView.ItemContainerStyle>                    <Style TargetType="{x:Type ListViewItem}">                        <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>                    </Style>                </ListView.ItemContainerStyle>-->
-
+            <ListView Grid.Column="0"  HorizontalAlignment="Left"  ItemsSource="{Binding Planets}" SelectedItem="{Binding currentPlanet, Mode=TwoWay}" >
                 <ListView.ItemTemplate>
                     <DataTemplate x:Name="temp">
                         <StackPanel>
