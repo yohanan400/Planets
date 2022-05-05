@@ -1,17 +1,17 @@
-﻿using PlanetsBE;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PlanetsBE;
 
 namespace PlanetsBL
 {
     public partial class PlanetsBl
     {
-        public PictureOfTheDay GetPODByDate(DateTime date)
+        public List<MediaInfo> GetMediaInfos(string subject)
         {
-            return DalReference.GetPictureOfTheDayByDate(date);
+            return DalReference.GetMediaFromNasa(subject);
         }
     }
 }

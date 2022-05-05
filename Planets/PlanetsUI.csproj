@@ -88,12 +88,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\SearchCommand.cs" />
+    <Compile Include="Commands\SelectPlanetCommand.cs" />
+    <Compile Include="Models\MediaM.cs" />
     <Compile Include="Models\NeoM.cs" />
+    <Compile Include="Models\PlanetM.cs" />
     <Compile Include="Models\PodM.cs" />
+    <Compile Include="ViewModels\MediaVM.cs" />
     <Compile Include="ViewModels\NeoVM.cs" />
+    <Compile Include="ViewModels\PlanetVM.cs" />
     <Compile Include="ViewModels\PodVM.cs" />
+    <Compile Include="Views\MediaV.xaml.cs">
+      <DependentUpon>MediaV.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NeoV.xaml.cs">
       <DependentUpon>NeoV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlanetV.xaml.cs">
+      <DependentUpon>PlanetV.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PodV.xaml.cs">
       <DependentUpon>PodV.xaml</DependentUpon>
@@ -110,7 +122,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\MediaV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\NeoV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlanetV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

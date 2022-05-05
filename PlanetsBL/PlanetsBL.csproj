@@ -60,7 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PlanetsBl.cs" />
+    <Compile Include="PlanetsBlMedia.cs" />
     <Compile Include="PlanetsBlNeo.cs" />
+    <Compile Include="PlanetsBlPlanet.cs" />
     <Compile Include="PlanetsBlPod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="Planets.Views.PlanetsV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Planets.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    
+    <Grid>
+        <ComboBox Name="PickupCB" SelectionChanged="ComboBox_SelectionChanged"  ItemsSource="{Binding Planets}" DisplayMemberPath="Name" HorizontalAlignment="Left" Margin="225,17,0,0" VerticalAlignment="Top" Width="391"/>
+
+        <Grid DataContext="{Binding currentPlanet}">
+            <Image Source="{Binding ProfilePictureURL}" HorizontalAlignment="Left" Height="173" Margin="148,51,0,0" VerticalAlignment="Top" Width="456" RenderTransformOrigin="0.5,0.5"/>
+
+            <TextBlock HorizontalAlignment="Left" Margin="232,247,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="108"/>
+            <TextBlock HorizontalAlignment="Left" Margin="443,235,0,0" TextWrapping="Wrap" Text="{Binding Type}" VerticalAlignment="Top" Width="111"/>
+            <TextBlock HorizontalAlignment="Left" Margin="232,303,0,0" TextWrapping="Wrap" Text="{Binding Mass}" VerticalAlignment="Top" Width="108"/>
+            <TextBlock HorizontalAlignment="Left" Margin="443,296,0,0" TextWrapping="Wrap" Text="{Binding TrackRadius}" VerticalAlignment="Top" RenderTransformOrigin="-0.406,0.508" Width="111"/>
+            <TextBlock HorizontalAlignment="Left" Margin="232,370,0,0" TextWrapping="Wrap" Text="{Binding DurationOfRoute}" VerticalAlignment="Top" Width="108"/>
+            <TextBlock HorizontalAlignment="Left" Margin="443,370,0,0" TextWrapping="Wrap" Text="{Binding TrackInclination}" VerticalAlignment="Top" Width="111"/>
+        </Grid>
+
+    </Grid>
+</UserControl>

@@ -25,12 +25,33 @@ namespace Planets
         {
             NeovUC.Visibility = Visibility.Hidden;
             PodUC.Visibility = Visibility.Visible;
+            PlanetUC.Visibility = Visibility.Hidden;
+            MediaUC.Visibility = Visibility.Hidden;
         }
 
         private void NeosB_Click(object sender, RoutedEventArgs e)
         {
             NeovUC.Visibility = Visibility.Visible;
             PodUC.Visibility = Visibility.Hidden;
+            PlanetUC.Visibility = Visibility.Hidden;
+            MediaUC.Visibility = Visibility.Hidden;
+
+        }
+
+        private void PlanetsB_Click(object sender, RoutedEventArgs e)
+        {
+            PlanetUC.Visibility = Visibility.Visible;
+            NeovUC.Visibility = Visibility.Hidden;
+            PodUC.Visibility = Visibility.Hidden;
+            MediaUC.Visibility = Visibility.Hidden;
+        }
+
+        private void MediaB_Click(object sender, RoutedEventArgs e)
+        {
+            MediaUC.Visibility = Visibility.Visible;
+            NeovUC.Visibility = Visibility.Hidden;
+            PodUC.Visibility = Visibility.Hidden;
+            PlanetUC.Visibility = Visibility.Hidden;
         }
     }
 }

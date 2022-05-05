@@ -27,6 +27,6 @@ namespace PlanetsDAL
         public int Moons { get; set; }
         public int PlanetaryRings { get; set; }
         public int Atmosphere { get; set; }
-        public int ProfilePicture { get; set; }
+        public string ProfilePictureURL { get; set; }
     }
 }

@@ -85,11 +85,11 @@ namespace PlanetsDAL
             }
         }
 
-        public PlanetsBE.PictureOfTheDay GetPictureOfTheDayById(int podId)
+        public PlanetsBE.PictureOfTheDay GetPictureOfTheDayByDate(DateTime date)
         {
             using (PlanetsEntities context = new PlanetsEntities())
             {
-                return PodClone(context.PictureOfTheDays.FirstOrDefault(x => x.Id == podId));
+                return PodClone(context.PictureOfTheDays.FirstOrDefault(x => x.ReleaseDate == date));
             }
         }
 

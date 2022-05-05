@@ -21,13 +21,13 @@ namespace PlanetsBE
         public int Moons { get; set; }
         public int PlanetaryRings { get; set; }
         public int Atmospheres { get; set; }
-        public int ProfilePicture { get; set; }
+        public string ProfilePictureURL { get; set; }
 
         public override string ToString()
         {
             return $"Id: {Id} Name: {Name}, Type: {Type}, Mass: {Mass}, TrackRadius: {TrackRadius}, DurationOfRoute: {DurationOfRoute}, "
                 + $"TrackInclination: {TrackInclination}, Diameter: {Diameter}, Eccentricity: {Eccentricity}, DayLength: {DayLength}, "
-                +$"Moons: {Moons}, PlanetaryRings: {PlanetaryRings}, Atmospheres: {Atmospheres}, ProfilePicture: {ProfilePicture}";
+                +$"Moons: {Moons}, PlanetaryRings: {PlanetaryRings}, Atmospheres: {Atmospheres}, ProfilePictureURL: {ProfilePictureURL}";
         }
     }
 }

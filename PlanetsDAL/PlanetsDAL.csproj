@@ -319,6 +319,7 @@
       <DependentUpon>PlanetsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PlanetsDal.cs" />
+    <Compile Include="PlanetsDalMedia.cs" />
     <Compile Include="PlanetsDalNeo.cs" />
     <Compile Include="PlanetsDalFireBase.cs" />
     <Compile Include="PlanetsDalPicture.cs" />

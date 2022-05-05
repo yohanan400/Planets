@@ -14,8 +14,8 @@ namespace PlanetsDAL
             using (PlanetsEntities context = new PlanetsEntities())
             {
                 //Update the profile picture of the planet to DB and Firebase
-                int picId = context.Pictures.Add(ClonePicture(picture)).Id;
-                planet.ProfilePicture = picId;
+                string picPath = context.Pictures.Add(ClonePicture(picture)).Path;
+                planet.ProfilePictureURL = picPath;
                 UploadPictureToFireBase(picture);
 
                 //Update the planet to DB
@@ -86,7 +86,7 @@ namespace PlanetsDAL
             newPlanet.Moons = planet.Moons;
             newPlanet.PlanetaryRings = planet.PlanetaryRings;
             newPlanet.Atmosphere = planet.Atmospheres;
-            newPlanet.ProfilePicture = planet.ProfilePicture;
+            newPlanet.ProfilePictureURL = planet.ProfilePictureURL;
 
             return newPlanet;
         }
@@ -108,7 +108,7 @@ namespace PlanetsDAL
             newPlanet.Moons = planet.Moons;
             newPlanet.PlanetaryRings = planet.PlanetaryRings;
             newPlanet.Atmospheres = planet.Atmosphere;
-            newPlanet.ProfilePicture = planet.ProfilePicture;
+            newPlanet.ProfilePictureURL = planet.ProfilePictureURL;
 
             return newPlanet;
         }
@@ -127,7 +127,7 @@ namespace PlanetsDAL
             newPlanet.Moons = planet.Moons;
             newPlanet.PlanetaryRings = planet.PlanetaryRings;
             newPlanet.Atmosphere = planet.Atmospheres;
-            newPlanet.ProfilePicture = planet.ProfilePicture;
+            newPlanet.ProfilePictureURL = planet.ProfilePictureURL;
         }
     }
 }
