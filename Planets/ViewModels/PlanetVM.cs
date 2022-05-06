@@ -19,6 +19,7 @@ namespace Planets.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ObservableCollection<Planet> Planets { get; set; }
+
         public Planet currentPlanet
         {
             get { return planetM.currentPlanet; }

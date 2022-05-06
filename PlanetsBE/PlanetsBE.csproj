@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Asteroid.cs" />
     <Compile Include="Comet.cs" />
+    <Compile Include="ImaggaObj.cs" />
     <Compile Include="MediaInfo.cs" />
     <Compile Include="Neo.cs" />
     <Compile Include="Picture.cs" />

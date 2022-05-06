@@ -1,4 +1,5 @@
 ﻿using Planets.ViewModels;
+using Planets.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +9,13 @@ using System.Windows.Input;
 
 namespace Planets.Commands
 {
-    public class SearchCommand : ICommand
+    public class ImaggaCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
-        private MediaVM mediaVM;
-
-        public SearchCommand(MediaVM mediaVM)
+        public ImaggaCommand()
         {
-            this.mediaVM = mediaVM;
+            
         }
 
         public bool CanExecute(object parameter)
@@ -26,7 +25,7 @@ namespace Planets.Commands
 
         public void Execute(object parameter)
         {
-            
+            new ImaggaV(parameter.ToString()).Show();
         }
     }
 }

@@ -19,6 +19,7 @@ namespace Planets
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         private void PodsB_Click(object sender, RoutedEventArgs e)

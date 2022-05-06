@@ -1,4 +1,5 @@
-﻿using Planets.ViewModels;
+﻿using Planets.Models;
+using Planets.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Planets.Views;
 
 namespace Planets.Views
 {
@@ -28,11 +30,13 @@ namespace Planets.Views
             InitializeComponent();
             mediaVM = new MediaVM();
             this.DataContext = mediaVM;
+           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             mediaVM.Search(subjectTB.Text);
+            mediaLB.ItemsSource = mediaVM.MediaInfos;
         }
     }
 }
