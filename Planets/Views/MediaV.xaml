@@ -20,7 +20,7 @@
                     <StackPanel>
                         <Image x:Name="hrefI" Source="{Binding Href}"/>
                         <TextBlock Text="{Binding Title}"/>
-                        <Button x:Name="imaggaB" Content="show in imagga" Command="{Binding Source=MediaVM, Path=ImaggaCommand}">
+                        <Button x:Name="imaggaB" Content="show in imagga" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid}, Path=DataContext.ImaggaCommand}">
                             <Button.CommandParameter>
                                 <Binding ElementName="hrefI" Path="Source" Mode="TwoWay"/>
                             </Button.CommandParameter>
